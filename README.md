@@ -36,7 +36,7 @@ Contribution / Pull Requests are welcome, but at this early stages where so much
 work might become quickly non-mergeable and thus be in vain.
 Please, for now, refrain to small PRs, thank you!
 
-# What's Next
+### What's Next
 * Make it responsive
 * Add optional listing of all known hosts (already fetching)
 * Add a dialog to change hostname/port of Nelson

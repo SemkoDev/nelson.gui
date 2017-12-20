@@ -1,0 +1,38 @@
+{
+  "name": "nelson.gui",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SemkoDev/nelson.gui.git"
+  },
+  "description": "Web GUI/Monitor for Nelson, a P2P manager for IOTA's IRI node",
+  "homepage": "https://semkodev.com",
+  "author": "Vitaly Semko <vitaly@semkodev.com> (https://twitter.com/dev_wit)",
+  "license": "ISC",
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "lodash": "^4.17.4",
+    "material-ui": "^0.20.0",
+    "moment": "^2.20.1",
+    "moment-duration-format": "^2.0.1",
+    "node-sass-chokidar": "^0.0.3",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.17",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive"
+  },
+  "devDependencies": {}
+}

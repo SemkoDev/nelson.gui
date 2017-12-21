@@ -12,16 +12,56 @@ Based on [create-react-app](https://github.com/facebookincubator/create-react-ap
 * install `serve` globally: `sudo npm install -g serve`
 * Use Firefox or Chrome browsers; there may be problems with IE (specially everything before Edge)
 
+### Installing
+
+Globally install Nelson
+
+```
+npm install -g nelson.gui
+```
+
+And run it
+
+```
+nelson.gui --p 5000
+```
+
+### Running as a service
+
+You can use the [node process manager](http://pm2.keymetrics.io/) to run Nelson GUI as a service.
+Just do the following:
+```
+# Install the process manager:
+npm install pm2 -g
+
+# Make pm2 start at startup:
+pm2 startup
+
+# Start the Nelson GUI as service
+pm2 start nelson.gui -- --port 3333
+
+# Save current processes runing with pm2 to startup on boot:
+pm2 save
+```
+
+### Docker
+
+Provided you have docker installed, Nelson GUI can be started as follows:
+
+```
+docker run <docker opts> romansemko/nelson.gui <nelson.gui command line opts>
+```
+
+
 ### Installing Manually
 
 Checkout the project
 
 ```
-    git checkout https://github.com/SemkoDev/nelson.gui.git
-    cd nelson.gui
-    yarn install --pure-lockfile
-    yarn run build
-    serve -s build -p 5000
+git checkout https://github.com/SemkoDev/nelson.gui.git
+cd nelson.gui
+yarn install --pure-lockfile
+node build/nelson.gui.js    
 ```
 
 Now your server runs at `http://localhost:5000`

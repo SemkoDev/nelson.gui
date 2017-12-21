@@ -10,6 +10,7 @@ Based on [create-react-app](https://github.com/facebookincubator/create-react-ap
 * A Nelson instance (including IRI) should be running locally on your machine.
 * `node` (version >6.9) and `yarn` and `npm` should be installed
 * install `serve` globally: `sudo npm install -g serve`
+* Use Firefox or Chrome browsers; there may be problems with IE (specially everything before Edge)
 
 ### Installing Manually
 

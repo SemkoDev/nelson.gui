@@ -62,7 +62,7 @@ class App extends Component {
                     />
                     <NelsonPeers
                         className='app-column-2'
-                        {...{ nelsonData, nelsonPeersError, nelsonPeers }}
+                        {...{ nelsonData, nelsonPeersError, nelsonPeers, connection }}
                     />
                 </div>
             </div>

@@ -3,7 +3,7 @@ import NelsonPeersListing from './NelsonPeersListing'
 import { Card, CardHeader, CardText  } from 'material-ui';
 
 export default function NelsonPeers (props) {
-    const { nelsonData, nelsonPeers, nelsonPeersError, className } = props;
+    const { nelsonData, nelsonPeers, nelsonPeersError, className, connection } = props;
     return (
         <Card className={className}>
             <CardHeader
@@ -13,7 +13,7 @@ export default function NelsonPeers (props) {
             <CardText>
                 {
                     nelsonData
-                        ? <NelsonPeersListing {...{ nelsonData, nelsonPeers }}/>
+                        ? <NelsonPeersListing {...{ nelsonData, nelsonPeers, connection }}/>
                         : <NoData {...{ nelsonPeersError }}/>
                 }
             </CardText>

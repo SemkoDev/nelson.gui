@@ -21,7 +21,7 @@ app.set('port', process.env.NELSON_GUI_PORT || program.port);
 
 app.use(express.static(path.join(__dirname)));
 app.all('/*/*', function (req, res) {
-        res.sendfile('index.html');
+        res.sendfile(path.join(__dirname, 'index.html'));
 });
 
 // Listen for requests

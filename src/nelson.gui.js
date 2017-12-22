@@ -20,6 +20,9 @@ program
 app.set('port', process.env.NELSON_GUI_PORT || program.port);
 
 app.use(express.static(path.join(__dirname)));
+app.all('/*/*', function (req, res) {
+        res.sendfile('index.html');
+});
 
 // Listen for requests
 const server = app.listen(app.get('port'), function() {

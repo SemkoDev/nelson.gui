@@ -21,6 +21,9 @@ program.version(version).option('-p, --port [value]', 'Nelson GUI port', parseNu
 app.set('port', process.env.NELSON_GUI_PORT || program.port);
 
 app.use(express.static(path.join(__dirname)));
+app.all('/*/*', function (req, res) {
+    res.sendfile('index.html');
+});
 
 // Listen for requests
 var server = app.listen(app.get('port'), function () {

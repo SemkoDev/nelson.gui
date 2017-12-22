@@ -32,7 +32,7 @@ export default function NelsonStatusData ({ nelsonData }) {
         <List>
             <StatusListItem label='Online since' value={startDateString} icon='calendar'/>
             <StatusListItem label='Online' value={duration} icon='clock-o'/>
-            <StatusListItem label='Is IRI Healthy' value={nelsonData.isIRIHealthy ? 'no' : 'yes'} icon='heartbeat'/>
+            <StatusListItem label='Is IRI Healthy' value={nelsonData.isIRIHealthy ? 'yes' : 'no'} icon='heartbeat'/>
             <StatusListItem label='Master Node' value={nelsonData.config.isMaster ? 'yes' : 'no'} icon='plus-circle'/>
             <Divider/>
             <StatusListItem label={epochLabel} value={epochValue} icon='hourglass'/>

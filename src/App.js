@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import AppBar from 'material-ui/AppBar';
+import { AppBar, IconButton } from 'material-ui';
+import CopyToClipboard from 'react-copy-to-clipboard';
 import NelsonStatus from './components/nelson-status/NelsonStatus';
 import NelsonPeers from './components/nelson-peers/NelsonPeers';
+import NelsonPeerStats from './components/nelson-peers/NelsonPeerStats';
 import { getNelsonData, getNelsonPeers, changeConnection } from './redux/nelson-api';
 import {
     dataSelect, dataErrorSelect, intervalSelect, peersSelect, peersErrorSelect, connectionSelect
 } from './selectors/nelson-api-selectors';
 import './style/App.css';
+
+const DONATE_ADDR = 'SOZAIPJMQUBOFCTDTJJDXCZEKNIYZGIGVDLFMH9FFBAYK9SWGTBCWVUTFHXDOUESZAXRJJCJESJPIEQCCKBUTVQPOW';
 
 const propTypes = {
     getNelsonData: PropTypes.func.isRequired,
@@ -21,9 +25,16 @@ const propTypes = {
     updateInterval: PropTypes.number,
     match: PropTypes.object,
     connection: PropTypes.object
-}
+};
 
 class App extends Component {
+    constructor(params) {
+        super(params);
+        this.state = {
+            copied: false
+        };
+    }
+
     componentDidMount () {
         this.props.getNelsonData();
         if (this.props.match.params.hostname && this.props.match.params.port) {
@@ -54,14 +65,29 @@ class App extends Component {
             <div className='app'>
                 <AppBar
                     title='Nelson Monitor'
+                    iconElementLeft={
+                        <CopyToClipboard text={DONATE_ADDR} onCopy={() => this.copy()}>
+                            <IconButton
+                                iconStyle={{color: '#FFF'}}
+                                iconClassName='fa fa-heart' tooltip={
+                                    this.state.copied ? 'IOTA address for donation copied!' : 'Donate'
+                                }
+                                tooltipPosition='bottom-right'
+                            />
+                        </CopyToClipboard>
+                    }
                 />
                 <div className='app-wrapper'>
                     <NelsonStatus
                         className='app-column-1'
                         {...{ nelsonData, nelsonDataError, updateInterval, connection }}
                     />
+                    <NelsonPeerStats
+                        className='app-column-2-up'
+                        {...{ nelsonData, nelsonPeersError }}
+                    />
                     <NelsonPeers
-                        className='app-column-2'
+                        className='app-column-2-down'
                         {...{ nelsonData, nelsonPeersError, nelsonPeers, connection }}
                     />
                 </div>
@@ -69,7 +95,12 @@ class App extends Component {
         );
     }
 
-    startPoll() {
+    copy () {
+        this.setState({ copied: true });
+        setTimeout(() => this.setState({ copied: false }), 3000);
+    }
+
+    startPoll () {
         this.timeout = setTimeout(() => {
             this.props.getNelsonData().then(this.props.getNelsonPeers())
         }, this.props.updateInterval);

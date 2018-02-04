@@ -27,7 +27,7 @@ process.on('unhandledRejection', function (reason, p) {
     console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
 });
 
-program.version(version).option('-p, --port [value]', 'Nelson GUI port', parseNumber, 5000).option('-a, --apiPort [value]', 'Nelson API port', parseNumber, 18600).option('-h, --apiHostname [value]', 'Nelson API hostname', 'mainnet.deviota.com').parse(process.argv);
+program.version(version).option('-p, --port [value]', 'Nelson GUI port', parseNumber, 5000).option('-a, --apiPort [value]', 'Nelson API port', parseNumber, 18600).option('-h, --apiHostname [value]', 'Nelson API hostname', 'localhost').parse(process.argv);
 
 // Define the port to run on
 app.set('port', process.env.NELSON_GUI_PORT || program.port);
@@ -70,7 +70,7 @@ function proxy(req, resp) {
             return;
         }
         if (r.statusCode === 401) {
-            console.log('Remote access denied', req.query, opts);
+            console.log('Remote access denied');
             resp.status(401);
             return;
         }

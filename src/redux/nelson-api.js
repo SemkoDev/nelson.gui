@@ -7,8 +7,7 @@ const NELSON_CHANGE_CONNECTION = 'NELSON_CHANGE_CONNECTION';
 
 const defaultState = {
     updateInterval: 5,
-    hostname: 'localhost',
-    port: 18600
+    auth: null
 }
 
 // Reducer
@@ -40,37 +39,35 @@ export default function reducer (state = defaultState, action = {}) {
                 nelsonDataError: null,
                 nelsonPeers: null,
                 nelsonPeersError: null,
-                hostname: action.hostname,
-                port: action.port
+                auth: action.auth
             });
         default: return state;
     }
 }
 
 // Action Creators
-export function getNelsonData ({ hostname, port }) {
+export function getNelsonData ({ auth }) {
     return (dispatch) => {
-        return fetchNelsonData({ hostname, port }).then(
+        return fetchNelsonData({ auth }).then(
             jsonResponse(dispatch, fetchNelsonDataSuccess),
             (error) => dispatch(fetchNelsonDataError(error))
         )
     }
 }
 
-export function getNelsonPeers ({ hostname, port }) {
+export function getNelsonPeers ({ auth }) {
     return (dispatch) => {
-        return fetchNelsonPeers({ hostname, port }).then(
+        return fetchNelsonPeers({ auth }).then(
             jsonResponse(dispatch, fetchNelsonPeersSuccess),
             (error) => dispatch(fetchNelsonPeersError(error))
         )
     }
 }
 
-export function changeConnection ({ hostname, port }) {
+export function changeConnection ({ auth }) {
     return {
         type: NELSON_CHANGE_CONNECTION,
-        hostname,
-        port
+        auth
     }
 }
 
@@ -108,10 +105,10 @@ function jsonResponse (dispatch, whereTo) {
     return (response) => response.json().then((data) => dispatch(whereTo(data)))
 }
 
-function fetchNelsonData ({ hostname, port }) {
-    return fetch(`http://${hostname}:${port}`);
+function fetchNelsonData ({ auth }) {
+    return fetch(`/api${auth ? `?auth=${auth}` : ''}`);
 }
 
-function fetchNelsonPeers ({ hostname, port }) {
-    return fetch(`http://${hostname}:${port}/peers`);
+function fetchNelsonPeers ({ auth }) {
+    return fetch(`/api/peers${auth ? `?auth=${auth}` : ''}`);
 }

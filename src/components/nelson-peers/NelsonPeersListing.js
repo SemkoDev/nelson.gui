@@ -9,7 +9,7 @@ export default class NelsonPeersListing extends React.Component {
     }
 
     render () {
-        const { nelsonData, nelsonPeers, connection } = this.props
+        const { nelsonData } = this.props;
         const nodesPeers = nelsonData.connectedPeers.map((peer) => {
             return {
                 id: peer.hostname || peer.ip + ':' + peer.port,
@@ -17,7 +17,7 @@ export default class NelsonPeersListing extends React.Component {
                 radius: 5 + ( 20 *  peer.weight )
             }
         });
-        const myNodeId = connection.hostname + ':' + connection.port;
+        const myNodeId = nelsonData.name;
         const myNode = {
             id: myNodeId,
             fill: '#EF5350',
@@ -26,7 +26,7 @@ export default class NelsonPeersListing extends React.Component {
         const edges = nodesPeers.map((node) => ({
             source: node.id,
             target: myNodeId,
-        }))
+        }));
         const myGraph = {
             nodes:[myNode, ...nodesPeers],
             edges
@@ -40,10 +40,7 @@ export default class NelsonPeersListing extends React.Component {
 
         return (
             <div>
-                <NelsonPeersTable
-                    name="Connected Peers"
-                    peers={nelsonData.connectedPeers}
-                />
+                <NelsonPeersTable peers={nelsonData.connectedPeers} />
                 <ForceGraph
                     {...{ simulationOptions }}
                     zoom

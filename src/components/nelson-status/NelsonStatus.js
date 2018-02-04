@@ -3,13 +3,13 @@ import NelsonStatusData from './NelsonStatusData'
 import { Card, CardHeader, CardText  } from 'material-ui';
 
 export default function NelsonStatus (props) {
-    const { nelsonData, nelsonDataError, className, updateInterval, connection } = props;
+    const { nelsonData, nelsonDataError, className, updateInterval } = props;
     return (
         <Card className={className}>
             <CardHeader
                 title={`Nelson Status`}
                 subtitle={
-                    `Updated each ${updateInterval / 1000} seconds from ${connection.hostname}:${connection.port}`
+                    `Updated each ${updateInterval / 1000} seconds from ${(nelsonData && nelsonData.name) || 'an unknown host'}`
                 }
             />
             <CardText>

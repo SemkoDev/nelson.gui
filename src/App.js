@@ -36,6 +36,7 @@ class App extends Component {
     }
 
     componentDidMount () {
+        this.props.getNelsonData();
         if (this.props.match.params.auth) {
             this.props.changeConnection(this.props.match.params);
         }
@@ -63,7 +64,7 @@ class App extends Component {
         return (
             <div className='app'>
                 <AppBar
-                    title='Nelson Monitor'
+                    title={`Nelson Monitor: ${nelsonData && nelsonData.name}`}
                     iconElementLeft={
                         <CopyToClipboard text={DONATE_ADDR} onCopy={() => this.copy()}>
                             <IconButton
@@ -100,6 +101,7 @@ class App extends Component {
     }
 
     startPoll () {
+        this.props.getNelsonData().then(this.props.getNelsonPeers())
         this.timeout = setTimeout(() => {
             this.props.getNelsonData().then(this.props.getNelsonPeers())
         }, this.props.updateInterval);

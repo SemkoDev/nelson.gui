@@ -65,10 +65,31 @@ node build/nelson.gui.js
 ```
 
 Now your server runs at `http://localhost:5000`
-Is your Nelson running on a non-standard host:port (localhost:18600)?
-Simply provide it in browsers's url, like: `http://localhost:5000/yourhost/1234`
+
+### Connecting to Nelson on another host/port
+
+Is your Nelson's API running on a non-standard host:port (localhost:18600)?
+Simply provide it when starting the GUI:
+
+```
+nelson.gui --p 5000 --apiHostname another.hostname.com --apiPort 123456
+```
+
 The data is refreshed automatically each 5 seconds (or at the heartbeat rate of your Nelson)
-Work in progress.
+
+### Connecting to Nelson +v.0.4.0 with username/password
+
+If your Nelson's API is username/password protected (strongly recommended!),
+you can specify the credentials in the URL:
+
+```
+http://www.your.gui.host.com:<port>/#/<username>:<password>
+```
+
+This is the simplest way. A better login window is coming soon.
+
+**NOTE**: If your Nelson API is not password protected, the GUI will
+scramble all the hostnames and IPs for security reasons.
 
 ## Development
 

@@ -9,7 +9,7 @@ export default class NelsonPeersListing extends React.Component {
     }
 
     render () {
-        const { nelsonData, connection } = this.props;
+        const { nelsonData } = this.props;
         const nodesPeers = nelsonData.connectedPeers.map((peer) => {
             return {
                 id: peer.hostname || peer.ip + ':' + peer.port,

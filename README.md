@@ -55,10 +55,10 @@ docker run <docker opts> romansemko/nelson.gui <nelson.gui command line opts>
 
 ### Installing Manually
 
-Checkout the project
+Clone the project
 
 ```
-git checkout https://github.com/SemkoDev/nelson.gui.git
+git clone https://github.com/SemkoDev/nelson.gui.git
 cd nelson.gui
 yarn install --pure-lockfile
 node build/nelson.gui.js    
@@ -76,6 +76,14 @@ The monitor is under heavy development. Please be patient.
 Contribution / Pull Requests are welcome, but at this early stages where so much changes, your
 work might become quickly non-mergeable and thus be in vain.
 Please, for now, refrain to small PRs, thank you!
+
+### Donations
+
+**Donations always welcome**:
+
+```
+SOZAIPJMQUBOFCTDTJJDXCZEKNIYZGIGVDLFMH9FFBAYK9SWGTBCWVUTFHXDOUESZAXRJJCJESJPIEQCCKBUTVQPOW
+```
 
 ### What's Next
 * Make it responsive

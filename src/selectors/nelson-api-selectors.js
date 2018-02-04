@@ -5,8 +5,7 @@ const nelsonStoreSelect = (state) => state.nelson || {};
 export const connectionSelect = createSelector(
     nelsonStoreSelect,
     (nelson) => ({
-        hostname: nelson.hostname,
-        port: nelson.port
+        auth: nelson.auth
     })
 );
 

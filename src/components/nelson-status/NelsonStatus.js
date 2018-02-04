@@ -1,25 +1,40 @@
 import React from 'react';
 import NelsonStatusData from './NelsonStatusData'
+import IRIStatusData from './IRIStatusData'
 import { Card, CardHeader, CardText  } from 'material-ui';
 
 export default function NelsonStatus (props) {
-    const { nelsonData, nelsonDataError, className, updateInterval, connection } = props;
+    const { nelsonData, nelsonDataError, className, updateInterval } = props;
     return (
-        <Card className={className}>
-            <CardHeader
-                title={`Nelson Status`}
-                subtitle={
-                    `Updated each ${updateInterval / 1000} seconds from ${connection.hostname}:${connection.port}`
-                }
-            />
-            <CardText>
-                {
-                    nelsonData
-                        ? <NelsonStatusData {...{ nelsonData }}/>
-                        : <NoData {...{ nelsonDataError }}/>
-                }
-            </CardText>
-        </Card>
+        <div>
+            <Card className={className}>
+                <CardHeader
+                    title={`Nelson Status`}
+                    subtitle={
+                        `Updated each ${updateInterval / 1000} seconds.`
+                    }
+                />
+                <CardText>
+                    {
+                        nelsonData
+                            ? <NelsonStatusData {...{ nelsonData }}/>
+                            : <NoData {...{ nelsonDataError }}/>
+                    }
+                </CardText>
+            </Card>
+            <Card className={className}>
+                <CardHeader
+                    title={`IRI Status`}
+                />
+                <CardText>
+                    {
+                        nelsonData
+                            ? <IRIStatusData {...{ nelsonData }}/>
+                            : <NoData {...{ nelsonDataError }}/>
+                    }
+                </CardText>
+            </Card>
+        </div>
     )
 }
 

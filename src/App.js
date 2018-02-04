@@ -25,8 +25,7 @@ const propTypes = {
 
 class App extends Component {
     componentDidMount () {
-        this.props.getNelsonData();
-        if (this.props.match.params.hostname && this.props.match.params.port) {
+        if (this.props.match.params.auth) {
             this.props.changeConnection(this.props.match.params);
         }
     }

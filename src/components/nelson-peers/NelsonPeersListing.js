@@ -17,7 +17,7 @@ export default class NelsonPeersListing extends React.Component {
                 radius: 5 + ( 20 *  peer.weight )
             }
         });
-        const myNodeId = connection.hostname + ':' + connection.port;
+        const myNodeId = nelsonData.name;
         const myNode = {
             id: myNodeId,
             fill: '#EF5350',

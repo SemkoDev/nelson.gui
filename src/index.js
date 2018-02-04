@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Route
 } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker';
@@ -24,7 +24,7 @@ ReactDOM.render(
             <Router>
                 <div>
                     <Route exact path='/' component={App}/>
-                    <Route exact path='/:hostname/:port' component={App}/>
+                    <Route exact path='/:auth' component={App}/>
                 </div>
             </Router>
         </Provider>

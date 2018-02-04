@@ -7,11 +7,17 @@ var request = require('request');
 var md5 = require('md5');
 var crypto = require('crypto');
 var express = require('express');
+var throttle = require("express-throttle");
 var bodyParser = require('body-parser');
 var program = require('commander');
 var path = require('path');
 var app = express();
 var version = require('../package.json').version;
+
+var apiThrottleOptions = {
+    "burst": 5,
+    "rate": "10/min"
+};
 
 var parseNumber = function parseNumber(v) {
     return parseInt(v);
@@ -29,8 +35,8 @@ app.set('port', process.env.NELSON_GUI_PORT || program.port);
 app.use(express.static(path.join(__dirname)));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.get('/api', proxy);
-app.get('/api/peers', proxy);
+app.get('/api', throttle(apiThrottleOptions), proxy);
+app.get('/api/peers', throttle(apiThrottleOptions), proxy);
 
 var salt = crypto.randomBytes(48).toString('hex');
 // Listen for requests
@@ -64,7 +70,7 @@ function proxy(req, resp) {
             return;
         }
         if (r.statusCode === 401) {
-            console.log('Remote access denied');
+            console.log('Remote access denied', req.query, opts);
             resp.status(401);
             return;
         }

@@ -9,15 +9,16 @@ import {
 } from 'material-ui/Table';
 
 
-export default function NelsonPeersTable({ name, peers }) {
+export default function NelsonPeersTable({ peers }) {
     return (
         <div>
-            <div>{name}: {peers.length}</div>
             <Table>
                 <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                     <TableRow>
                         <TableHeaderColumn>Hostname / IP</TableHeaderColumn>
+                        <TableHeaderColumn>Name</TableHeaderColumn>
                         <TableHeaderColumn>Port</TableHeaderColumn>
+                        <TableHeaderColumn>IRI Protocol</TableHeaderColumn>
                         <TableHeaderColumn>Weight</TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
@@ -35,7 +36,9 @@ function PeerRow ({ peer }) {
     return (
         <TableRow>
             <TableRowColumn>{ peer.hostname || peer.ip }</TableRowColumn>
+            <TableRowColumn>{ peer.name || 'unknown' }</TableRowColumn>
             <TableRowColumn>{ peer.port }</TableRowColumn>
+            <TableRowColumn>{ peer.IRIProtocol || 'udp' }</TableRowColumn>
             <TableRowColumn>{ parseFloat(peer.weight).toFixed(4) }</TableRowColumn>
         </TableRow>
     )

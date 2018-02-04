@@ -5,10 +5,10 @@ import { Card, CardHeader, CardText  } from 'material-ui';
 export default function NelsonPeers (props) {
     const { nelsonData, nelsonPeers, nelsonPeersError, className, connection } = props;
     return (
-        <Card className={className}>
+        <Card {...{ className }}>
             <CardHeader
-                title='Peers'
-                subtitle={`Total number of known peers: ${nelsonData ? nelsonData.totalPeers : 0}`}
+                title='Peers Connected'
+                subtitle={nelsonData ? nelsonData.connectedPeers.length : 0}
             />
             <CardText>
                 {

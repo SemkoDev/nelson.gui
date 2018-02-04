@@ -6,12 +6,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.4.1] - 2018-02-04
+## [0.2.2] - 2018-02-04
+
+### Changed
+- Fixed api hostname and logging.
+
+## [0.2.1] - 2018-02-04
 
 ### Changed
 - Fixed api requests overflooding.
 
-## [0.4.0] - 2018-02-04
+## [0.2.0] - 2018-02-04
 
 ### BREAKING CHANGE
 - The url structure has changed. Please read the README!

@@ -36,14 +36,14 @@ class App extends Component {
     }
 
     componentDidMount () {
-        this.props.getNelsonData();
+        this.startPoll();
         if (this.props.match.params.auth) {
             this.props.changeConnection(this.props.match.params);
         }
     }
 
     componentWillUnmount() {
-        clearTimeout(this.timeout);
+        this.timeout && clearInterval(this.timeout);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -101,8 +101,7 @@ class App extends Component {
     }
 
     startPoll () {
-        this.props.getNelsonData().then(this.props.getNelsonPeers())
-        this.timeout = setTimeout(() => {
+        this.timeout = setInterval(() => {
             this.props.getNelsonData().then(this.props.getNelsonPeers())
         }, this.props.updateInterval);
     }

@@ -2564,6 +2564,12 @@ expand-tilde@^2.0.0, expand-tilde@^2.0.2:
   dependencies:
     homedir-polyfill "^1.0.1"
 
+express-throttle@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/express-throttle/-/express-throttle-2.0.0.tgz#371cca348a82ccf2b924379119df7e73c05f6acf"
+  dependencies:
+    lru-cache "^4.0.1"
+
 express@^4.13.3:
   version "4.16.2"
   resolved "https://registry.yarnpkg.com/express/-/express-4.16.2.tgz#e35c6dfe2d64b7dca0a5cd4f21781be3299e076c"

@@ -32,10 +32,10 @@ export const dataErrorSelect = createSelector(
 export const configSelect = createSelector(
     dataSelect,
     (data) => data ? data.config : {}
-)
+);
 
 export const intervalSelect = createSelector(
     nelsonStoreSelect,
     configSelect,
     (nelson, config) => (config.beatInterval || nelson.updateInterval || 5) * 1000
-)
+);

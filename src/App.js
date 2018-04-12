@@ -12,7 +12,7 @@ import {
 } from './selectors/nelson-api-selectors';
 import './style/App.css';
 
-const DONATE_ADDR = 'SOZAIPJMQUBOFCTDTJJDXCZEKNIYZGIGVDLFMH9FFBAYK9SWGTBCWVUTFHXDOUESZAXRJJCJESJPIEQCCKBUTVQPOW';
+const DONATE_ADDR = 'YHZIJOENEFSDMZGZA9WOGFTRXOFPVFFCDEYEFHPUGKEUAOTTMVLPSSNZNHRJD99WAVESLFPSGLMTUEIBDZRKBKXWZD';
 
 const propTypes = {
     getNelsonData: PropTypes.func.isRequired,
@@ -33,12 +33,18 @@ class App extends Component {
         this.state = {
             copied: false
         };
+        this.startPoll = this.startPoll.bind(this);
+        this.stopPoll = this.stopPoll.bind(this);
+        this.restartPoll = this.restartPoll.bind(this);
+        this.getAllNelsonData = this.getAllNelsonData.bind(this);
     }
 
     componentDidMount () {
-        this.startPoll();
         if (this.props.match.params.auth) {
             this.props.changeConnection(this.props.match.params);
+            this.restartPoll(100);
+        } else {
+            this.startPoll(1)
         }
     }
 
@@ -51,8 +57,7 @@ class App extends Component {
             (this.props.nelsonData !== nextProps.nelsonData || nextProps.nelsonDataError) ||
             (this.props.nelsonPeers !== nextProps.nelsonPeers || nextProps.nelsonPeersError)
         ) {
-            clearTimeout(this.timeout);
-            this.startPoll();
+            this.restartPoll();
         }
     }
 
@@ -100,10 +105,21 @@ class App extends Component {
         setTimeout(() => this.setState({ copied: false }), 3000);
     }
 
-    startPoll () {
-        this.timeout = setInterval(() => {
-            this.props.getNelsonData().then(this.props.getNelsonPeers())
-        }, this.props.updateInterval);
+    startPoll (updateInterval) {
+        this.timeout = setInterval(this.getAllNelsonData, updateInterval || this.props.updateInterval);
+    }
+
+    restartPoll (updateInterval) {
+        this.stopPoll();
+        this.startPoll(updateInterval);
+    }
+
+    stopPoll () {
+        this.timeout && clearTimeout(this.timeout);
+    }
+
+    getAllNelsonData () {
+        this.props.getNelsonData().then(this.props.getNelsonPeers())
     }
 }
 

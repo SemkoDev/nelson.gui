@@ -23,7 +23,7 @@ npm install -g nelson.gui
 And run it
 
 ```
-nelson.gui --p 5000
+nelson.gui -p 5000
 ```
 
 ### Running as a service
@@ -38,7 +38,7 @@ npm install pm2 -g
 pm2 startup
 
 # Start the Nelson GUI as service
-pm2 start nelson.gui -- --port 3333
+pm2 start nelson.gui --port 3333
 
 # Save current processes runing with pm2 to startup on boot:
 pm2 save
@@ -72,7 +72,7 @@ Is your Nelson's API running on a non-standard host:port (localhost:18600)?
 Simply provide it when starting the GUI:
 
 ```
-nelson.gui --p 5000 --apiHostname another.hostname.com --apiPort 123456
+nelson.gui -p 5000 --apiHostname another.hostname.com --apiPort 123456
 ```
 
 The data is refreshed automatically each 5 seconds (or at the heartbeat rate of your Nelson)

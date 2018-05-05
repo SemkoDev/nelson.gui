@@ -12,7 +12,7 @@ import {
 } from './selectors/nelson-api-selectors';
 import './style/App.css';
 
-const DONATE_ADDR = 'YHZIJOENEFSDMZGZA9WOGFTRXOFPVFFCDEYEFHPUGKEUAOTTMVLPSSNZNHRJD99WAVESLFPSGLMTUEIBDZRKBKXWZD';
+const DONATE_ADDR = 'VUXMTCZFZWEHPRGKPMPVKP9LNSXOEBSPDOIZDMRAZCZH9SCJJDQYKNPTQJXDEUYYYUJIXFRHOGIUBVQCDGJBXBFGQW';
 
 const propTypes = {
     getNelsonData: PropTypes.func.isRequired,
@@ -42,10 +42,11 @@ class App extends Component {
     componentDidMount () {
         if (this.props.match.params.auth) {
             this.props.changeConnection(this.props.match.params);
-            this.restartPoll(100);
+            this.startPoll(100);
         } else {
-            this.startPoll(1)
+            this.startPoll(1);
         }
+        setTimeout(() => { this.getAllNelsonData() }, 120);
     }
 
     componentWillUnmount() {

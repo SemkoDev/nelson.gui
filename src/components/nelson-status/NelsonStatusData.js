@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from '../../tools/moment';
+import syncVelocity from '../../model/sync-velocity';
 import StatusListItem from './StatusListItem';
 import { List, Divider, CircularProgress } from 'material-ui';
 import './style/NelsonStatusData.css';
@@ -11,8 +12,8 @@ export default function NelsonStatusData ({ nelsonData }) {
         moment().local().diff(nelsonData.heart.startDate)
     ).format('d [days] h [hours] m [minutes] s [seconds]');
 
-    const epochLabel = `Epoch (${nelsonData.config.epochInterval} s)`
-    const cycleLabel = `Cycle (${nelsonData.config.cycleInterval} s)`
+    const epochLabel = `Epoch (${nelsonData.config.epochInterval} s)`;
+    const cycleLabel = `Cycle (${nelsonData.config.cycleInterval} s)`;
     const epochValue = (
         <ProgressValue
             currentNumber={nelsonData.heart.currentEpoch}
@@ -32,6 +33,11 @@ export default function NelsonStatusData ({ nelsonData }) {
     const synchronized = nelsonData.isIRIHealthy &&
         stats && stats.latestSolidSubtangleMilestoneIndex === stats.latestMilestoneIndex;
     const milestones = `( ${stats.latestSolidSubtangleMilestoneIndex} / ${stats.latestMilestoneIndex} )`;
+    const syncVelocityData = syncVelocity(stats.latestMilestoneIndex, stats.latestSolidSubtangleMilestoneIndex);
+    const velocity = `${syncVelocityData.velocity.toFixed(2)} indexes/minute`;
+    const syncEstimation = syncVelocityData.minutesLeft === Infinity
+        ? 'Never'
+        : moment.duration(syncVelocityData.minutesLeft, 'minutes').format('d [days] h [hours] m [minutes] s [seconds]');
     const yesno = (value) => value ? 'yes' : 'no';
     const memoryPercent = (stats.jreFreeMemory/stats.jreMaxMemory*100).toFixed(2);
     const memoryProgress = (
@@ -60,6 +66,8 @@ export default function NelsonStatusData ({ nelsonData }) {
             <StatusListItem label='IRI Version' value={stats.appVersion} icon='info'/>
             <StatusListItem label='Is IRI Healthy' value={yesno(nelsonData.isIRIHealthy)} icon='heartbeat'/>
             <StatusListItem label='Synchronized?' value={`${yesno(synchronized)} ${milestones}`} icon='wifi'/>
+            <StatusListItem label='Sync speed' value={velocity} icon='download'/>
+            <StatusListItem label='Will sync in' value={syncEstimation} icon='calendar-check-o'/>
             <StatusListItem label='Tips' value={stats.tips || 0} icon='podcast'/>
             <StatusListItem label='Transactions to request'
                             value={stats.transactionsToRequest || 0}

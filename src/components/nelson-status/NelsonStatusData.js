@@ -36,7 +36,7 @@ export default function NelsonStatusData ({ nelsonData }) {
     const syncVelocityData = syncVelocity(stats.latestMilestoneIndex, stats.latestSolidSubtangleMilestoneIndex);
     const velocity = `${syncVelocityData.velocity.toFixed(2)} indexes/minute`;
     const syncEstimation = syncVelocityData.minutesLeft === Infinity
-        ? 'Never'
+        ? (stats.latestSolidSubtangleMilestoneIndex === stats.latestMilestoneIndex ? 'Done' : 'Never')
         : moment.duration(syncVelocityData.minutesLeft, 'minutes').format('d [days] h [hours] m [minutes] s [seconds]');
     const yesno = (value) => value ? 'yes' : 'no';
     const memoryPercent = (stats.jreFreeMemory/stats.jreMaxMemory*100).toFixed(2);

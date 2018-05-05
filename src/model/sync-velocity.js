@@ -19,6 +19,5 @@ export default function syncVelocity(milestone, subtangleMilestone) {
     const msVelocity = diffSubtangleMilestones / diffTime * 1000 * 60; // minutes
     const velocity = msVelocity - mVelocity;
     const minutesLeft = velocity <= 0 ? Infinity  : (milestone - subtangleMilestone) / velocity;
-    console.log('> mVelocity:', mVelocity, ' msVelocity:', msVelocity, ' velocity:', velocity);
     return { velocity, minutesLeft };
 }

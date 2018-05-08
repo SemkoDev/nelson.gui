@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.2.3] - 2018-05-08
+
+### Changes
+- Fixes update interval and adds sync velocity stats
+
 ## [0.2.3] - 2018-04-12
 
 ### Changed

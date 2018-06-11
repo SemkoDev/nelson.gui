@@ -7,17 +7,17 @@ Based on [create-react-app](https://github.com/facebookincubator/create-react-ap
 
 ### Prerequisites
 
-* A Nelson instance (including IRI) should be running locally on your machine.
-* `node` (version >6.9) and `yarn` and `npm` should be installed
-* install `serve` globally: `sudo npm install -g serve`
-* Use Firefox or Chrome browsers; there may be problems with IE (specially everything before Edge)
+- A Nelson instance (including IRI) should be running locally on your machine.
+- `node` (version >6.9) and `yarn` and `npm` should be installed
+- install `serve` globally: `sudo npm install -g serve`
+- Use Firefox or Chrome browsers; there may be problems with IE (specially everything before Edge)
 
 ### Installing
 
 Globally install Nelson
 
 ```
-npm install -g nelson.gui
+npm install -g @semkodev/nelson.gui
 ```
 
 And run it
@@ -30,6 +30,7 @@ nelson.gui -p 5000
 
 You can use the [node process manager](http://pm2.keymetrics.io/) to run Nelson GUI as a service.
 Just do the following:
+
 ```
 # Install the process manager:
 npm install pm2 -g
@@ -49,19 +50,18 @@ pm2 save
 Provided you have docker installed, Nelson GUI can be started as follows:
 
 ```
-docker run <docker opts> romansemko/nelson.gui <nelson.gui command line opts>
+docker run <docker opts> semkodev/nelson.gui <nelson.gui command line opts>
 ```
-
 
 ### Installing Manually
 
 Clone the project
 
 ```
-git clone https://github.com/SemkoDev/nelson.gui.git
+git clone git@gitlab.com:semkodev/nelson.gui.git
 cd nelson.gui
 yarn install --pure-lockfile
-node build/nelson.gui.js    
+node build/nelson.gui.js
 ```
 
 Now your server runs at `http://localhost:5000`
@@ -107,13 +107,14 @@ AAJXXFJUEQHKPYIOUIUO9FWCMOAFBZAZPXIFRI9FLDQZJGHQENG9HNMODUZJCHR9RHHUSBHWJELGRDOW
 ```
 
 ### What's Next
-* Make it responsive
-* Add optional listing of all known hosts (already fetching)
-* Add a dialog to change hostname/port of Nelson
-* Implement Menu
-* Add some visualization of nodes / connections
-* Add favicon / logo and some visuals
-* Add version of the package to the Web output
-* Add tests
-* Improve documentation & clean up code
-* ...
+
+- Make it responsive
+- Add optional listing of all known hosts (already fetching)
+- Add a dialog to change hostname/port of Nelson
+- Implement Menu
+- Add some visualization of nodes / connections
+- Add favicon / logo and some visuals
+- Add version of the package to the Web output
+- Add tests
+- Improve documentation & clean up code
+- ...

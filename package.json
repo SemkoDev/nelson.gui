@@ -1,5 +1,5 @@
 {
-  "name": "nelson.gui",
+  "name": "@semkodev/nelson.gui",
   "version": "0.2.4",
   "repository": {
     "type": "git",
@@ -25,7 +25,8 @@
     "build:all": "yarn run build && yarn run build:bin",
     "build:bin": "babel ./src/nelson.gui.js > build/nelson.gui.js",
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive"
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "postversion": "git push --follow-tags"
   },
   "dependencies": {
     "body-parser": "^1.18.2",

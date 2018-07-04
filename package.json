@@ -10,7 +10,7 @@
   "author": "Vitaly Semko <vitaly@semkodev.com> (https://twitter.com/dev_wit)",
   "license": "ISC",
   "bin": {
-    "nelson.gui": "./build/nelson.gui.js"
+    "nelson.gui": "./src/nelson.gui.js"
   },
   "files": [
     "src",

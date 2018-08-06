@@ -1,0 +1,15 @@
+.interval-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.interval-value {
+    display: inline-block;
+    padding-left: 30px;
+}
+
+.interval-progress {
+    position: absolute;
+    left: 4px;
+    top: -2px;
+}

@@ -12,8 +12,6 @@ import {
 } from './selectors/nelson-api-selectors';
 import './style/App.css';
 
-const DONATE_ADDR = 'IYUIUCFNGOEEQHT9CQU9VYJVOJMQI9VYTQGQLTBAKTFIPWWRBFEV9TJWUZU9EYEFPM9VB9QYXTSMCDKMDABASVXPPX';
-
 const propTypes = {
     getNelsonData: PropTypes.func.isRequired,
     getNelsonPeers: PropTypes.func.isRequired,
@@ -71,17 +69,6 @@ class App extends Component {
             <div className='app'>
                 <AppBar
                     title={`Nelson Monitor: ${nelsonData && nelsonData.name}`}
-                    iconElementLeft={
-                        <CopyToClipboard text={DONATE_ADDR} onCopy={() => this.copy()}>
-                            <IconButton
-                                iconStyle={{color: '#FFF'}}
-                                iconClassName='fa fa-heart' tooltip={
-                                    this.state.copied ? 'IOTA address for donation copied!' : 'Donate'
-                                }
-                                tooltipPosition='bottom-right'
-                            />
-                        </CopyToClipboard>
-                    }
                 />
                 <div className='app-wrapper'>
                     <NelsonStatus

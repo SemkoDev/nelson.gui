@@ -1,4 +1,4 @@
-# Deviota Nelson GUI/Monitor
+# Nelson GUI/Monitor
 
 This is a small http server that monitors the Nelson instance and outputs the status as a web page.
 Based on [create-react-app](https://github.com/facebookincubator/create-react-app).

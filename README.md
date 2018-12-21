@@ -98,14 +98,6 @@ Contribution / Pull Requests are welcome, but at this early stages where so much
 work might become quickly non-mergeable and thus be in vain.
 Please, for now, refrain to small PRs, thank you!
 
-### Donations
-
-**Donations always welcome**:
-
-```
-IYUIUCFNGOEEQHT9CQU9VYJVOJMQI9VYTQGQLTBAKTFIPWWRBFEV9TJWUZU9EYEFPM9VB9QYXTSMCDKMDABASVXPPX
-```
-
 ### What's Next
 
 - Make it responsive
